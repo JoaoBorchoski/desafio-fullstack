@@ -1,13 +1,14 @@
 import "express-async-errors";
 import express, { Application } from "express";
 import { handleErrors } from "./errors";
-import { usersRouter, loginRouter } from "./routers";
+import { usersRouter, loginRouter, contactRouter } from "./routers";
 
 const app: Application = express();
 app.use(express.json());
 
 app.use("/login", loginRouter);
 app.use("/users", usersRouter);
+app.use("/contacts", contactRouter);
 
 app.use(handleErrors);
 

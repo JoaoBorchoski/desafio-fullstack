@@ -1,4 +1,5 @@
 import { usersRouter } from "./users.routers";
 import { loginRouter } from "./login.routers";
+import { contactRouter } from "./contacts.routers";
 
-export { usersRouter, loginRouter };
+export { usersRouter, loginRouter, contactRouter };

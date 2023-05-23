@@ -8,6 +8,14 @@ import {
 
 import { IUserLoginRequest } from "./login.interfaces";
 
+import {
+    IContact,
+    IContactReturn,
+    IContactRepo,
+    IMultipleContacts,
+    IContactPartial,
+} from "./contacts.interfaces";
+
 export {
     IUser,
     IUserReturn,
@@ -15,4 +23,9 @@ export {
     IMultipleUsers,
     IUserPartial,
     IUserLoginRequest,
+    IContact,
+    IContactReturn,
+    IContactRepo,
+    IMultipleContacts,
+    IContactPartial,
 };
