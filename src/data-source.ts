@@ -1,38 +1,42 @@
-import { DataSource, DataSourceOptions } from "typeorm";
-import path from "path";
 import "dotenv/config";
-const setDataSourceConfig = (): DataSourceOptions => {
-    const entities: string = path.join(__dirname, "./entities/**.{js,ts}");
-    const migration: string = path.join(__dirname, "./migrations/**.{js,ts}");
-    const nodeEnv = process.env.NODE_ENV;
-    if (nodeEnv === "production") {
-        return {
-            type: "postgres",
-            url: process.env.DATABASE_URL!,
-            entities: [entities],
-            migrations: [migration],
-        };
+import "reflect-metadata";
+import { DataSource, DataSourceOptions } from "typeorm";
+import path, { join } from "path";
+
+const dataSourceConfig = (): DataSourceOptions => {
+    const entitiesPath: string = path.join(__dirname, "./entities/**.{ts,js}");
+    const migrationsPath: string = path.join(
+        __dirname,
+        "./migrations/**.{ts,js}"
+    );
+
+    const dbURL: string | undefined = process.env.DATABASE_URL;
+
+    if (!dbURL) {
+        throw new Error("Env var DATABASE_URL does not exists");
     }
+
+    const nodeEnv: string | undefined = process.env.NODE_ENV;
+
     if (nodeEnv === "test") {
         return {
             type: "sqlite",
             database: ":memory:",
             synchronize: true,
-            entities: [entities],
+            entities: [entitiesPath],
         };
     }
+
     return {
         type: "postgres",
-        host: process.env.PGHOST!,
-        username: process.env.PGUSER!,
-        password: process.env.PGPASSWORD!,
-        port: parseInt(process.env.PGPORT!),
-        database: process.env.DB!,
+        url: dbURL,
         synchronize: false,
         logging: true,
-        entities: [entities],
-        migrations: [migration],
+        migrations: [migrationsPath],
+        entities: [entitiesPath],
     };
 };
-const AppDataSource = new DataSource(setDataSourceConfig());
+
+const AppDataSource = new DataSource(dataSourceConfig());
+
 export default AppDataSource;
