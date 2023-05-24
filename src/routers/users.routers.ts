@@ -8,15 +8,17 @@ import {
 } from "../middlewares";
 import {
     createUserController,
-    retriveUsersController,
+    listUsersController,
     updateUserController,
     deleteUserController,
+    retriveUserController,
 } from "./../controllers/users.controllers";
 
 export const usersRouter: Router = Router();
+export const userDetailRouter: Router = Router();
 
 usersRouter.post("", verifyData(createUserSchema), createUserController);
-usersRouter.get("", retriveUsersController);
+usersRouter.get("", listUsersController);
 usersRouter.patch(
     "/:id",
     verifyData(updateUserSchema),
@@ -30,3 +32,5 @@ usersRouter.delete(
     verifyPermission,
     deleteUserController
 );
+
+userDetailRouter.get("/:id", verifyUserId, retriveUserController);

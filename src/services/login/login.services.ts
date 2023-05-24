@@ -4,6 +4,7 @@ import { AppError } from "../../errors";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import AppDataSource from "../../data-source";
+import { createUserSchemaReturn } from "../../schemas";
 
 export const loginServices = async (userData: IUserLoginRequest) => {
     const userRepo: IUserRepo = AppDataSource.getRepository(User);
@@ -29,5 +30,10 @@ export const loginServices = async (userData: IUserLoginRequest) => {
         { expiresIn: "24h", subject: String(user.id) }
     );
 
-    return token;
+    const ret = {
+        token: token,
+        ...createUserSchemaReturn.parse(user),
+    };
+
+    return ret;
 };
