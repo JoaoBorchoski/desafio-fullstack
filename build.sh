@@ -2,6 +2,6 @@
 # exit on error
 set -o errexit
 
-yarn install
-yarn build
-yarn typeorm migration:run -d dist/data-source
+npm run install
+npm run build
+npm run typeorm migration:run -d dist/data-source
