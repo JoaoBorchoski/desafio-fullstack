@@ -1,8 +1,8 @@
 import { createUserSchemaReturn } from "./../../schemas";
-import { AppDataSource } from "./../../data-source";
 import { IUser, IUserRepo, IUserReturn } from "./../../interfaces";
 import { User } from "../../entities";
 import { AppError } from "../../errors";
+import AppDataSource from "../../data-source";
 
 export const createUserService = async (
     userData: IUser

@@ -1,6 +1,6 @@
 import { User } from "./../../entities/users.entities";
-import { AppDataSource } from "./../../data-source";
 import { IUserRepo } from "../../interfaces";
+import AppDataSource from "../../data-source";
 
 export const deleteUserServices = async (id: number): Promise<void> => {
     const userRepo: IUserRepo = AppDataSource.getRepository(User);

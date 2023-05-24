@@ -1,8 +1,8 @@
 import { AppError } from "./../../errors";
 import { User } from "./../../entities/users.entities";
-import { AppDataSource } from "./../../data-source";
 import { IUserPartial } from "../../interfaces";
 import { createUserSchemaReturn } from "../../schemas";
+import AppDataSource from "../../data-source";
 
 export const updateUserService = async (
     userData: IUserPartial,

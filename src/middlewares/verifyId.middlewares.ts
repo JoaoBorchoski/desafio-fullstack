@@ -1,8 +1,8 @@
 import { AppError } from "./../errors";
 import { User } from "./../entities/users.entities";
-import { AppDataSource } from "./../data-source";
 import { Request, Response, NextFunction } from "express";
 import { IUserRepo } from "../interfaces";
+import AppDataSource from "../data-source";
 
 export const verifyUserId = async (
     req: Request,

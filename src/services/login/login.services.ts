@@ -1,9 +1,9 @@
 import { User } from "./../../entities/users.entities";
-import { AppDataSource } from "./../../data-source";
 import { IUserLoginRequest, IUserRepo } from "../../interfaces";
 import { AppError } from "../../errors";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
+import AppDataSource from "../../data-source";
 
 export const loginServices = async (userData: IUserLoginRequest) => {
     const userRepo: IUserRepo = AppDataSource.getRepository(User);

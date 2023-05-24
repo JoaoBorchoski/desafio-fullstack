@@ -1,7 +1,7 @@
 import { User } from "./../../entities/users.entities";
-import { AppDataSource } from "./../../data-source";
 import { IUserRepo } from "../../interfaces";
 import { userSchemaMultiples } from "../../schemas/users.schemas";
+import AppDataSource from "../../data-source";
 
 export const retriverUsersServices = async (): Promise<any> => {
     const userRepo: IUserRepo = AppDataSource.getRepository(User);
